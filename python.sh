@@ -1,0 +1,6 @@
+PYTHON_VERSION='3.11'
+
+VIRTUAL_PREFIX='private'
+
+VERSION='0.1.0'
+
