@@ -19,7 +19,7 @@ WORKDIR /home
 Create a build script that creates the launcher, and runs docke-update
 to generate the Dockerfile, and docker-build to build the container
 
-#+BEGIN_SRC bash :shebang "#! /usr/bin/env bash" :tangle "build-docker.sh"
+#+BEGIN_SRC bash :shebang "#! /usr/bin/env bash" :tangle "../build-docker.sh"
 CONTAINER_PORT=8080
 CONTAINER_PACKAGES=/home/packages
 
@@ -27,7 +27,6 @@ cp `which run-in-env.sh` docker/
 py.sh pipfile >docker/Pipfile
 mklauncher.sh pypi-server run -p $CONTAINER_PORT $CONTAINER_PACKAGES >docker/pypi-launcher.sh
 
-./py.sh docker-update
 ./py.sh docker-build
 #+END_SRC
 
