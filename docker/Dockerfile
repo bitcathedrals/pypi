@@ -6,7 +6,7 @@ LABEL timestamp = "Tue"
 
 WORKDIR /home
 
-test -d $HOME/packages || mkdir -p $HOME/packages
+RUN test -d $HOME/packages || mkdir -p $HOME/packages
 
 COPY Dockerfile run-in-env.sh pypi-launcher.sh Pipfile .
 RUN chmod u+x .pypi-launcer.sh run-in-env.sh
