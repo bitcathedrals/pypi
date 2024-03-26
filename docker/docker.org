@@ -34,7 +34,7 @@ mklauncher.sh python pypi-server run -p $CONTAINER_PORT $CONTAINER_PACKAGES >doc
 RUN test -d $HOME/packages || mkdir -p $HOME/packages
 
 COPY Dockerfile run-in-env.sh pypi.sh Pipfile .
-RUN chmod u+x pypi-launcer.sh run-in-env.sh
+RUN chmod u+x pypi-launcer.sh run-in-venv.sh
 #+END_SRC
 
 Install the server.
