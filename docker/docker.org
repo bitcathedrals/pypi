@@ -1,0 +1,54 @@
+* This is a tool for building a docker layer
+
+Start from the pythonsh pythonsh layer
+
+#+BEGIN_SRC docker-build :tangle Dockerfile.template
+FROM codermattie:2-3.11.8
+
+LABEL docker-version = "@DOCKER_VERSION@"
+LABEL python-python = "@PYTHON_VERSION@"
+LABEL timestamp = "@TIMESTAMP@"
+#+END_SRC
+
+Do everything in home.
+
+#+BEGIN_SRC docker-build :tangle Dockerfile.template
+WORKDIR /home
+#+END_SRC
+
+Create a build script that creates the launcher, and runs docke-update
+to generate the Dockerfile, and docker-build to build the container
+
+#+BEGIN_SRC bash :shebang "#! /usr/bin/env bash" :tangle "bin/build-docker.sh"
+CONTAINER_PORT=8080
+CONTAINER_PACKAGES=/home/packages
+
+cp `which run-in-env.sh` docker/
+py.sh pipfile >docker/Pipfile
+mklauncher.sh pypi-server run -p $CONTAINER_PORT $CONTAINER_PACKAGES >docker/pypi-launcher.sh
+
+./py.sh docker-update
+./py.sh docker-build
+#+END_SRC
+
+#+BEGIN_SRC docker-build
+test -d $HOME/packages || mkdir -p $HOME/packages
+
+COPY Dockerfile run-in-env.sh pypi-launcher.sh Pipfile .
+RUN chmod u+x .pypi-launcer.sh run-in-env.sh
+#+END_SRC
+
+Install the server.
+
+#+BEGIN_SRC docker-build :tangle Dockerfile.template
+RUN $HOME/run-in-env.sh pipenv pypi-server
+#+END_SRC
+
+Setup the server.
+
+#+BEGIN_SRC docker-build :tangle Dockerfile.template
+EXPOSE 8080
+ENTRYPOINT[$HOME/pypi-server.sh]
+#+END_SRC
+
+
