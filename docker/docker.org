@@ -9,7 +9,7 @@ LABEL docker-version = "@DOCKER_VERSION@"
 LABEL python-version = "@PYTHON_VERSION@"
 LABEL timestamp = "@TIMESTAMP@"
 
-USER=$USER
+USER $USER
 #+END_SRC
 
 Do everything in home.

@@ -2,9 +2,9 @@ FROM codermattie/pythonsh:2-3.11.8
 
 LABEL docker-version = "1"
 LABEL python-version = "3.11"
-LABEL timestamp = "Tue Mar 26 16:40:06 PDT 2024"
+LABEL timestamp = "Tue Mar 26 16:41:04 PDT 2024"
 
-USER=$USER
+USER $USER
 
 WORKDIR /home
 
