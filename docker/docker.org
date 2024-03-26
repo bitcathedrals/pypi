@@ -31,7 +31,7 @@ mklauncher.sh pypi-server run -p $CONTAINER_PORT $CONTAINER_PACKAGES >docker/pyp
 ./py.sh docker-build
 #+END_SRC
 
-#+BEGIN_SRC docker-build
+#+BEGIN_SRC docker-build :tangle Dockerfile.template
 test -d $HOME/packages || mkdir -p $HOME/packages
 
 COPY Dockerfile run-in-env.sh pypi-launcher.sh Pipfile .
@@ -50,5 +50,3 @@ Setup the server.
 EXPOSE 8080
 ENTRYPOINT[$HOME/pypi-server.sh]
 #+END_SRC
-
-
