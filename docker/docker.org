@@ -19,7 +19,7 @@ WORKDIR /home
 Create a build script that creates the launcher, and runs docke-update
 to generate the Dockerfile, and docker-build to build the container
 
-#+BEGIN_SRC bash :shebang "#! /usr/bin/env bash" :tangle "bin/build-docker.sh"
+#+BEGIN_SRC bash :shebang "#! /usr/bin/env bash" :tangle "build-docker.sh"
 CONTAINER_PORT=8080
 CONTAINER_PACKAGES=/home/packages
 
