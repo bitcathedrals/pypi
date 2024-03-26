@@ -33,7 +33,7 @@ mklauncher.sh python pypi-server run -p $CONTAINER_PORT $CONTAINER_PACKAGES >doc
 #+BEGIN_SRC docker-build :tangle Dockerfile.template
 RUN test -d $HOME/packages || mkdir -p $HOME/packages
 
-COPY Dockerfile run-in-env.sh pypi-launcher.sh Pipfile .
+COPY Dockerfile run-in-env.sh pypi.sh Pipfile .
 RUN chmod u+x pypi-launcer.sh run-in-env.sh
 #+END_SRC
 
