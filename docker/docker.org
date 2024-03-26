@@ -8,6 +8,8 @@ FROM codermattie/pythonsh:2-3.11.8
 LABEL docker-version = "@DOCKER_VERSION@"
 LABEL python-version = "@PYTHON_VERSION@"
 LABEL timestamp = "@TIMESTAMP@"
+
+USER=$USER
 #+END_SRC
 
 Do everything in home.
@@ -34,7 +36,7 @@ mklauncher.sh python pypi-server run -p $CONTAINER_PORT $CONTAINER_PACKAGES >doc
 RUN test -d $HOME/packages || mkdir -p $HOME/packages
 
 COPY Dockerfile run-in-venv.sh pypi.sh Pipfile .
-RUN chmod u+x pypi-launcer.sh run-in-venv.sh
+RUN chmod u+x pypi.sh run-in-venv.sh
 #+END_SRC
 
 Install the server.
