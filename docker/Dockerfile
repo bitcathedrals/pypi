@@ -14,4 +14,4 @@ RUN chmod u+x pypi-launcer.sh run-in-env.sh
 RUN ./run-in-venv.sh python pipenv install
 
 EXPOSE 8080
-ENTRYPOINT[/home/pypi.sh]
+ENTRYPOINT["/home/pypi.sh"]

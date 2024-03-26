@@ -47,5 +47,5 @@ Setup the server.
 
 #+BEGIN_SRC docker-build :tangle Dockerfile.template
 EXPOSE 8080
-ENTRYPOINT[/home/pypi.sh]
+ENTRYPOINT["/home/pypi.sh"]
 #+END_SRC
