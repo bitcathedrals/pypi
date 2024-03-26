@@ -3,7 +3,7 @@
 Start from the pythonsh pythonsh layer
 
 #+BEGIN_SRC docker-build :tangle Dockerfile.template
-FROM codermattie:2-3.11.8
+FROM codermattie/pythonsh:2-3.11.8
 
 LABEL docker-version = "@DOCKER_VERSION@"
 LABEL python-version = "@PYTHON_VERSION@"

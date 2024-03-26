@@ -1,4 +1,4 @@
-FROM codermattie:2-3.11.8
+FROM codermattie/pythonsh:2-3.11.8
 
 LABEL docker-version = "1"
 LABEL python-version = "3.11"
