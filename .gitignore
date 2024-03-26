@@ -2,3 +2,7 @@ Pipfile
 pyproject.toml
 **/.DS_Store
 
+docker/Dockerfile.template
+docker/py.sh
+docker/pypi-launcher.sh
+docker/python.sh
