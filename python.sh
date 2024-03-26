@@ -1,4 +1,4 @@
-SRC=src
+SOURCE=src
 PACKAGE=pypi
 
 BUILD_NAME=pypi
