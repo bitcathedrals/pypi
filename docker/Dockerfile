@@ -9,9 +9,9 @@ WORKDIR /home
 RUN test -d $HOME/packages || mkdir -p $HOME/packages
 
 COPY Dockerfile run-in-env.sh pypi-launcher.sh Pipfile .
-RUN chmod u+x .pypi-launcer.sh run-in-env.sh
+RUN chmod u+x pypi-launcer.sh run-in-env.sh
 
-RUN $HOME/run-in-venv.sh pipenv install
+RUN ./run-in-venv.sh python pipenv install
 
 EXPOSE 8080
-ENTRYPOINT[$HOME/pypi-server.sh]
+ENTRYPOINT[/home/pypi.sh]
