@@ -10,11 +10,6 @@ LABEL python-version = "@PYTHON_VERSION@"
 LABEL timestamp = "@TIMESTAMP@"
 
 USER $USER
-#+END_SRC
-
-Do everything in home.
-
-#+BEGIN_SRC docker-build :tangle Dockerfile.template
 WORKDIR /home
 #+END_SRC
 
@@ -33,7 +28,7 @@ mklauncher.sh python pypi-server run -p $CONTAINER_PORT $CONTAINER_PACKAGES >doc
 #+END_SRC
 
 #+BEGIN_SRC docker-build :tangle Dockerfile.template
-RUN test -d $HOME/packages || mkdir -p $HOME/packages
+RUN test -d packages || mkdir -p packages
 
 COPY Dockerfile run-in-venv.sh pypi.sh Pipfile .
 RUN chmod u+x pypi.sh run-in-venv.sh
