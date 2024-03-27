@@ -3,7 +3,7 @@
 Start from the pythonsh pythonsh layer
 
 #+BEGIN_SRC docker-build :tangle Dockerfile.template
-FROM codermattie/pythonsh:3 AS pythonsh
+FROM codermattie/pythonsh:4 AS pythonsh
 FROM scratch
 COPY --from=pythonsh / /
 
@@ -25,7 +25,6 @@ CONTAINER_PACKAGES=/home/packages
 
 cp `which batch-in-venv.sh` docker/install-server.sh
 cat >>docker/install-server.sh <<INSTALLER
-pyenv exec python -m pip install pipenv
 pyenv exec pipenv install --skip-lock
 INSTALLER
 
@@ -37,7 +36,7 @@ dock-build.sh build
 
 #+BEGIN_SRC docker-build :tangle Dockerfile.template
 COPY Dockerfile install-server.sh pypi.sh Pipfile .
-RUN bash install-server.sh python
+RUN bash -xv install-server.sh python
 #+END_SRC
 
 Server Entry Point
