@@ -3,5 +3,10 @@ pyproject.toml
 
 docker/Dockerfile.template
 docker/py.sh
-docker/pypi-launcher.sh
+docker/pypi.sh
 docker/python.sh
+docker/run-in-venv.sh
+
+build-docker.sh
+pytest.ini
+
