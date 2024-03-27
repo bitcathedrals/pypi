@@ -9,7 +9,9 @@ COPY --from=pythonsh:3 / /
 
 LABEL docker-version = "@DOCKER_VERSION@"
 LABEL timestamp = "@TIMESTAMP@"
+#+END_SRC
 
+#+BEGIN_SRC docker-build :tangle Dockerfile.template
 USER $USER
 WORKDIR /home
 #+END_SRC
