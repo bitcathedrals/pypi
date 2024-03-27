@@ -30,7 +30,7 @@ mklauncher.sh python pypi-server run -p $CONTAINER_PORT $CONTAINER_PACKAGES >doc
 #+BEGIN_SRC docker-build :tangle Dockerfile.template
 COPY Dockerfile run-in-venv.sh pypi.sh Pipfile .
 RUN test -d packages || mkdir -p packages
-RUN bash run-in-venv.sh python pipenv install
+RUN bash run-in-venv.sh pyenv exec python -m pip install
 #+END_SRC
 
 Server Entry Point
