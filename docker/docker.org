@@ -3,7 +3,7 @@
 Start from the pythonsh pythonsh layer
 
 #+BEGIN_SRC docker-build :tangle Dockerfile.template
-FROM pythonsh:3 AS pythonsh
+FROM codermattie/pythonsh:3 AS pythonsh
 FROM scratch
 COPY --from=pythonsh / /
 
