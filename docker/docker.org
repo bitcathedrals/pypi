@@ -33,7 +33,7 @@ mklauncher.sh python pypi-server run -p $CONTAINER_PORT $CONTAINER_PACKAGES >doc
 
 #+BEGIN_SRC docker-build :tangle Dockerfile.template
 COPY Dockerfile install-server.sh pypi.sh Pipfile .
-RUN bash install-server
+RUN bash install-server.sh
 #+END_SRC
 
 Server Entry Point
