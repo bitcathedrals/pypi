@@ -2,17 +2,14 @@ FROM codermattie/pythonsh:2-3.11.8
 
 LABEL docker-version = "1"
 LABEL python-version = "3.11"
-LABEL timestamp = "Tue Mar 26 17:05:26 PDT 2024"
+LABEL timestamp = "Tue Mar 26 17:08:24 PDT 2024"
 
 USER $USER
 WORKDIR /home
 
-RUN test -d packages || mkdir -p packages
-
 COPY Dockerfile run-in-venv.sh pypi.sh Pipfile .
-RUN chmod u+x pypi.sh run-in-venv.sh
-
-RUN ./run-in-venv.sh python pipenv install
+RUN test -d packages || mkdir -p packages
+RUN bash run-in-venv.sh python pipenv install
 
 EXPOSE 8080
 ENTRYPOINT ["/home/pypi.sh"]
