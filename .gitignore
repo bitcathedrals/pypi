@@ -7,6 +7,5 @@ docker/pypi.sh
 docker/python.sh
 docker/install-server.sh
 
-build-docker.sh
 pytest.ini
 
