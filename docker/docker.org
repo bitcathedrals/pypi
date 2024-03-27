@@ -14,6 +14,7 @@ LABEL timestamp = "@TIMESTAMP@"
 #+BEGIN_SRC docker-build :tangle Dockerfile.template
 USER $USER
 WORKDIR /home
+export HOME=/home
 #+END_SRC
 
 Create a build script that creates the launcher, and runs docke-update
@@ -25,6 +26,12 @@ CONTAINER_PACKAGES=/home/packages
 
 cp `which batch-in-venv.sh` docker/install-server.sh
 cat >>docker/install-server.sh <<INSTALLER
+echo "HOME is $HOME"
+echo "USER is $USER"
+echo "PWD is $PWD"
+echo -n "whoami is: "
+whoami
+
 pyenv exec pipenv install --skip-lock
 INSTALLER
 
@@ -36,7 +43,7 @@ dock-build.sh build
 
 #+BEGIN_SRC docker-build :tangle Dockerfile.template
 COPY Dockerfile install-server.sh pypi.sh Pipfile .
-RUN bash -xv install-server.sh python
+RUN cd $HOME && bash -xv install-server.sh python
 #+END_SRC
 
 Server Entry Point
