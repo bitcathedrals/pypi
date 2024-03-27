@@ -5,7 +5,7 @@ Start from the pythonsh pythonsh layer
 #+BEGIN_SRC docker-build :tangle Dockerfile.template
 FROM pythonsh:3 AS pythonsh
 FROM scratch
-COPY --from=pythonsh/ /
+COPY --from=pythonsh / /
 
 LABEL docker-version = "@DOCKER_VERSION@"
 LABEL timestamp = "@TIMESTAMP@"
