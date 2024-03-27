@@ -20,7 +20,11 @@ to generate the Dockerfile, and docker-build to build the container
 CONTAINER_PORT=8080
 CONTAINER_PACKAGES=/home/packages
 
-cp `which run-in-venv.sh` docker/
+cp `which batch-in-venv.sh` docker/install-server.sh
+cat >>docker/install-server.sh <<INSTALLER
+pyenv exec python -m pip install
+INSTALLER
+
 py.sh pipfile >docker/Pipfile
 mklauncher.sh python pypi-server run -p $CONTAINER_PORT $CONTAINER_PACKAGES >docker/pypi.sh
 
@@ -28,14 +32,15 @@ mklauncher.sh python pypi-server run -p $CONTAINER_PORT $CONTAINER_PACKAGES >doc
 #+END_SRC
 
 #+BEGIN_SRC docker-build :tangle Dockerfile.template
-COPY Dockerfile run-in-venv.sh pypi.sh Pipfile .
-RUN test -d packages || mkdir -p packages
-RUN bash run-in-venv.sh python pyenv exec python -m pip install
+COPY Dockerfile install-server.sh pypi.sh Pipfile .
+RUN bash install-server
 #+END_SRC
 
 Server Entry Point
 
 #+BEGIN_SRC docker-build :tangle Dockerfile.template
+RUN test -d packages || mkdir -p packages
+
 EXPOSE 8080
 ENTRYPOINT ["/home/pypi.sh"]
 #+END_SRC
