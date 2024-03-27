@@ -23,7 +23,7 @@ CONTAINER_PACKAGES=/home/packages
 cp `which batch-in-venv.sh` docker/install-server.sh
 cat >>docker/install-server.sh <<INSTALLER
 pyenv exec python -m pip pipenv
-pipenv install
+pyenv exec pipenv install
 INSTALLER
 
 py.sh pipfile >docker/Pipfile
