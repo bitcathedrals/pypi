@@ -28,19 +28,12 @@ mklauncher.sh python pypi-server run -p $CONTAINER_PORT $CONTAINER_PACKAGES >doc
 #+END_SRC
 
 #+BEGIN_SRC docker-build :tangle Dockerfile.template
-RUN test -d packages || mkdir -p packages
-
 COPY Dockerfile run-in-venv.sh pypi.sh Pipfile .
-RUN chmod u+x pypi.sh run-in-venv.sh
+RUN test -d packages || mkdir -p packages
+RUN bash run-in-venv.sh python pipenv install
 #+END_SRC
 
-Install the server.
-
-#+BEGIN_SRC docker-build :tangle Dockerfile.template
-RUN ./run-in-venv.sh python pipenv install
-#+END_SRC
-
-Setup the server.
+Server Entry Point
 
 #+BEGIN_SRC docker-build :tangle Dockerfile.template
 EXPOSE 8080
