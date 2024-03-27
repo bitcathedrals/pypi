@@ -1,5 +1,7 @@
-pyproject.toml
 **/.DS_Store
+
+Pipfile
+pyproject.toml
 
 docker/Dockerfile.template
 docker/py.sh
@@ -8,4 +10,5 @@ docker/python.sh
 docker/install-server.sh
 
 pytest.ini
+build-docker.sh
 
