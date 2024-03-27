@@ -3,6 +3,7 @@
 Pipfile
 pyproject.toml
 
+docker/Dockerfile
 docker/Dockerfile.template
 docker/py.sh
 docker/pypi.sh
