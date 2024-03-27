@@ -29,7 +29,7 @@ INSTALLER
 py.sh pipfile >docker/Pipfile
 mklauncher.sh python pypi-server run -p $CONTAINER_PORT $CONTAINER_PACKAGES >docker/pypi.sh
 
-dock-build.sh
+dock-build.sh build
 #+END_SRC
 
 #+BEGIN_SRC docker-build :tangle Dockerfile.template
