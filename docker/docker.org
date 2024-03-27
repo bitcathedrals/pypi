@@ -14,7 +14,7 @@ LABEL timestamp = "@TIMESTAMP@"
 #+BEGIN_SRC docker-build :tangle Dockerfile.template
 USER $USER
 WORKDIR /home
-export HOME=/home
+ENV HOME=/home
 #+END_SRC
 
 Create a build script that creates the launcher, and runs docke-update
