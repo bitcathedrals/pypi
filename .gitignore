@@ -5,7 +5,7 @@ docker/Dockerfile.template
 docker/py.sh
 docker/pypi.sh
 docker/python.sh
-docker/run-in-venv.sh
+docker/install-server.sh
 
 build-docker.sh
 pytest.ini

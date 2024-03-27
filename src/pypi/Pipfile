@@ -1,2 +1,2 @@
 [packages]
-pypiserver = "=~4.8.0"
+pypi-server = "=~0.4."
