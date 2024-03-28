@@ -20,6 +20,8 @@ invokes docker-build to build the container
 CONTAINER_PORT=8080
 CONTAINER_PACKAGES=/home/packages
 
+mklauncher.sh python python pypi-server run -p $CONTAINER_PORT $CONTAINER_PACKAGES >docker/pypi.sh
+
 cp `which batch-in-venv.sh` docker/install-server.sh
 cat >>docker/install-server.sh <<INSTALLER
 echo "HOME is $HOME"
@@ -32,7 +34,6 @@ pyenv exec pipenv install --skip-lock
 INSTALLER
 
 py.sh pipfile >docker/Pipfile
-mklauncher.sh python python pypi-server run -p $CONTAINER_PORT $CONTAINER_PACKAGES >docker/pypi.sh
 
 dock-build.sh build
 #+END_SRC
