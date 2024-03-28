@@ -15,6 +15,8 @@ Create a build script that creates a script to install the server and
 invokes docker-build to build the container
 
 #+BEGIN_SRC bash :shebang "#! /usr/bin/env bash" :tangle "../build-docker.sh"
+./py.sh check || exit 1
+
 CONTAINER_PORT=8080
 CONTAINER_PACKAGES=/home/packages
 
