@@ -11,14 +11,8 @@ LABEL docker-version = "@DOCKER_VERSION@"
 LABEL timestamp = "@TIMESTAMP@"
 #+END_SRC
 
-#+BEGIN_SRC docker-build :tangle Dockerfile.template
-USER $USER
-WORKDIR /home
-ENV HOME=/home
-#+END_SRC
-
-Create a build script that creates the launcher, and runs docke-update
-to generate the Dockerfile, and docker-build to build the container
+Create a build script that creates a script to install the server and
+invokes docker-build to build the container
 
 #+BEGIN_SRC bash :shebang "#! /usr/bin/env bash" :tangle "../build-docker.sh"
 CONTAINER_PORT=8080
@@ -36,21 +30,28 @@ pyenv exec pipenv install --skip-lock
 INSTALLER
 
 py.sh pipfile >docker/Pipfile
-mklauncher.sh python pypi-server run -p $CONTAINER_PORT $CONTAINER_PACKAGES >docker/pypi.sh
+mklauncher.sh python python pypi-server run -p $CONTAINER_PORT $CONTAINER_PACKAGES >docker/pypi.sh
 
 dock-build.sh build
 #+END_SRC
 
+Copy the files into /home and 
 #+BEGIN_SRC docker-build :tangle Dockerfile.template
+WORKDIR /home
+ENV HOME=/home
+
 COPY Dockerfile install-server.sh pypi.sh Pipfile .
+
+RUN cd $HOME && (test -d packages || mkdir -p packages)
+RUN cd $HOME && chown python * && chmod u+x *.sh && chmod u+rwx packages
 RUN cd $HOME && bash -xv install-server.sh python
 #+END_SRC
 
 Server Entry Point
 
 #+BEGIN_SRC docker-build :tangle Dockerfile.template
-RUN test -d packages || mkdir -p packages
+USER python
 
 EXPOSE 8080
-ENTRYPOINT ["/home/pypi.sh"]
+ENTRYPOINT [/home/pypi.sh]
 #+END_SRC
