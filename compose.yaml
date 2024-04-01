@@ -2,8 +2,11 @@ version: '3'
 services:
   pypi:
     image: codermattie/pypi:8
+    container_name: pypi-server
     ports:
       - 8080:8080
     volumes:
-      - /home/packages:/home/packages
-
+      - packages:/home/packages
+      - ./htpasswd:/home/htpasswd
+volumes:
+  packages:
