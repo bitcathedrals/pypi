@@ -17,10 +17,11 @@ invokes docker-build to build the container
 #+BEGIN_SRC bash :shebang "#! /usr/bin/env bash" :tangle "../build-docker.sh"
 ./py.sh check || exit 1
 
-CONTAINER_PORT=8080
-CONTAINER_PACKAGES=/home/packages
+SERVER_PORT=8080
+SERVER_PACKAGES=/home/packages
+SERVER_PASSWD=/home/htpasswd
 
-mklauncher.sh python python pypi-server run -p $CONTAINER_PORT $CONTAINER_PACKAGES >docker/pypi.sh
+mklauncher.sh python python pypi-server run -p $SERVER_PORT -P $SERVER_PASSWD $SERVER_PACKAGES >docker/pypi.sh
 
 cp `which batch-in-venv.sh` docker/install-server.sh
 cat >>docker/install-server.sh <<INSTALLER
