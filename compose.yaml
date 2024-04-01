@@ -1,10 +1,9 @@
 version: '3'
 services:
   pypi:
-    image: pypi:8
+    image: codermattie/pypi:8
     ports:
       - 8080:8080
     volumes:
       - /home/packages:/home/packages
-    
 
