@@ -3,6 +3,7 @@ services:
   pypi:
     image: codermattie/pypi:11
     container_name: pypi-server
+    restart: unless-stopped
     ports:
       - 8080:8080
     volumes:
