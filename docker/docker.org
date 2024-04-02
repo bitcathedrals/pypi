@@ -9,6 +9,8 @@ COPY --from=pythonsh / /
 
 LABEL docker-version = "@DOCKER_VERSION@"
 LABEL timestamp = "@TIMESTAMP@"
+
+RUN apk add nano
 #+END_SRC
 
 Create a build script that creates a script to install the server and
@@ -34,6 +36,17 @@ whoami
 pyenv exec pipenv install --skip-lock
 INSTALLER
 
+cp `which batch-in-venv.sh` docker/in-venv.sh
+cat >>docker/install-server.sh <<INSTALLER
+echo "HOME is $HOME"
+echo "USER is $USER"
+echo "PWD is $PWD"
+echo -n "whoami is: "
+whoami
+
+source $2
+INSTALLER
+
 py.sh pipfile >docker/Pipfile
 
 dock-build.sh build
@@ -44,7 +57,7 @@ Copy the files into /home and
 WORKDIR /home
 ENV HOME=/home
 
-COPY Dockerfile install-server.sh pypi.sh Pipfile .
+COPY Dockerfile install-server.sh in-venv.sh pypi.sh Pipfile .
 
 RUN cd $HOME && (test -d packages || mkdir -p packages)
 RUN cd $HOME && chown python * && chmod u+x *.sh && chmod u+rwx packages
