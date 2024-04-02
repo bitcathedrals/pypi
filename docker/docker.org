@@ -3,7 +3,7 @@
 Start from the pythonsh pythonsh layer
 
 #+BEGIN_SRC docker-build :tangle Dockerfile.template
-FROM codermattie/pythonsh:4 AS pythonsh
+FROM codermattie/pythonsh:5 AS pythonsh
 FROM scratch
 COPY --from=pythonsh / /
 
@@ -25,28 +25,6 @@ SERVER_PASSWD=/home/htpasswd
 
 mklauncher.sh python python pypi-server run -p $SERVER_PORT -P $SERVER_PASSWD $SERVER_PACKAGES >docker/pypi.sh
 
-cp `which batch-in-venv.sh` docker/install-server.sh
-cat >>docker/install-server.sh <<INSTALLER
-echo "HOME is \$HOME"
-echo "USER is \$USER"
-echo "PWD is \$PWD"
-echo -n "whoami is: "
-whoami
-
-pyenv exec pipenv install --skip-lock
-INSTALLER
-
-cp `which batch-in-venv.sh` docker/in-venv.sh
-cat >>docker/in-venv.sh <<INSTALLER
-echo "HOME is \$HOME"
-echo "USER is \$USER"
-echo "PWD is \$PWD"
-echo -n "whoami is: "
-whoami
-
-source \$2
-INSTALLER
-
 py.sh pipfile >docker/Pipfile
 
 dock-build.sh build
@@ -57,11 +35,11 @@ Copy the files into /home and
 WORKDIR /home
 ENV HOME=/home
 
-COPY Dockerfile install-server.sh in-venv.sh pypi.sh Pipfile .
+COPY Dockerfile pypi.sh Pipfile .
 
 RUN cd $HOME && (test -d packages || mkdir -p packages)
 RUN cd $HOME && chown python * && chmod u+x *.sh && chmod u+rwx packages
-RUN cd $HOME && bash -xv install-server.sh python
+RUN cd $HOME && bash -xv install.sh python
 #+END_SRC
 
 Server Entry Point
