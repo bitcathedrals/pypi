@@ -7,7 +7,7 @@ case $1 in
     user=$1
     password=$2
 
-    htpasswd -c -b htpasswd $user $password
+    htpasswd -sc -b htpasswd $user $password
    ;;
   "add")
     shift
@@ -15,7 +15,7 @@ case $1 in
     user=$1
     password=$2
 
-    htpassword -b htpasswd $user $password
+    htpassword -sb htpasswd $user $password
     ;;
   *|"help")
     cat <<HELP
