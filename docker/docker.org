@@ -37,7 +37,7 @@ pyenv exec pipenv install --skip-lock
 INSTALLER
 
 cp `which batch-in-venv.sh` docker/in-venv.sh
-cat >>docker/install-server.sh <<INSTALLER
+cat >>docker/in-venv.sh <<INSTALLER
 echo "HOME is $HOME"
 echo "USER is $USER"
 echo "PWD is $PWD"
