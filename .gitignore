@@ -5,10 +5,7 @@ pyproject.toml
 
 docker/Dockerfile
 docker/Dockerfile.template
-docker/py.sh
-docker/pypi.sh
-docker/python.sh
-docker/install-server.sh
+docker/*.sh
 
 pytest.ini
 build-docker.sh
