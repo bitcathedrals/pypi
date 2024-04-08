@@ -1,4 +1,6 @@
-version: '3'
+version: '3.8'
+name: pypi
+
 services:
   pypi:
     image: codermattie/pypi:11
@@ -9,5 +11,9 @@ services:
     volumes:
       - packages:/home/packages
       - ./htpasswd:/home/htpasswd
+    tmpfs:
+      - /run
+      - /tmp
+
 volumes:
   packages:
