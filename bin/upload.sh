@@ -14,5 +14,5 @@ then
   exit 1
 fi
 
-exec twine upload --repository-url $REPO $1/*
+exec pyenv exec twine upload --repository-url $REPO $1/*
 
