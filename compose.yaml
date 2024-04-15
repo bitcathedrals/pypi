@@ -5,12 +5,18 @@ services:
   pypi:
     image: codermattie/pypi:11
     container_name: pypi-server
+
+    read_only: true
+    cap_drop:
+      - ALL
+
     restart: unless-stopped
     ports:
       - 8080:8080
     volumes:
       - packages:/home/packages
       - ./htpasswd:/home/htpasswd
+
     tmpfs:
       - /run
       - /tmp
