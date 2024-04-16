@@ -10,6 +10,12 @@ services:
     cap_drop:
       - ALL
 
+    security_opt:
+      - no-new-privileges:true
+
+    user: python:python
+    working_dir: /home
+
     restart: unless-stopped
     ports:
       - 8080:8080
