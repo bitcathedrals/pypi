@@ -21,7 +21,7 @@ services:
       - 8080:8080
     volumes:
       - packages:/home/packages
-      - /home/mattie/code/pypi/htpasswd:/home/htpasswd
+      - /home/mattie/code/run/pypi/htpasswd:/home/htpasswd
 
     tmpfs:
       - /run
