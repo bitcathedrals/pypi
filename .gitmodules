@@ -2,3 +2,5 @@
 	path = pythonsh
 	url = git@github.com:bitcathedrals/pythonsh.git
 	branch = develop
+	ignore = dirty
+
