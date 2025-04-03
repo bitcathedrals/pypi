@@ -4,21 +4,21 @@ build-backend = "setuptools.build_meta"
 
 [project]
 
-name = "private"
-version = "0.2.0"
+name = "pypi"
+version = "0.4.0"
 
 license = { file = "LICENSE" }
 
 readme = "README.md"
 
 description = "install and run a private python package repo"
-authors = [ { name = "Michael Mattie" , email = "codermattie@runbox.com" } ]
+authors = [ { name = "Michael Mattie" , email = "mattie@codermattie.net" } ]
 
 dependencies = []
 
 [project.urls]
-homepage = "https://github.com/bitcathedrals/private/"
-repository = "https://github.com:bitcathedrals/private.git"
+homepage = "https://github.com/bitcathedrals/pypi/"
+repository = "https://github.com:bitcathedrals/pypi.git"
 
 [project.scripts]
 start = bin/start:exec

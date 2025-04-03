@@ -1,0 +1,12 @@
+**/.DS_Store
+
+Pipfile
+pyproject.toml
+
+docker/Dockerfile
+docker/Dockerfile.template
+docker/*.sh
+
+pytest.ini
+build-docker.sh
+
